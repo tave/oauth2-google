@@ -109,4 +109,12 @@ class Google extends AbstractProvider
     {
         return new GoogleUser($response);
     }
+
+
+    public function getAccessToken($grant, array $options = [])
+    {
+        return parent::getAccessToken($grant, array_merge([
+            'exclude_redirect_uri_in_refresh_grant' => true
+        ], $options));
+    }
 }
